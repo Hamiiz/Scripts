@@ -1,0 +1,222 @@
+{
+    "manifest_version": 3,
+    "name": "CRM Disposition Panel",
+    "version": "1.0",
+    "description": "Enhanced CRM disposition helper panel",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "scripting"
+    ],
+    "host_permissions": [
+        "*://69.10.47.54/*",
+        "*://proxy2.alliancedialer.com/*"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Open CRM Disposition Panel"
+    },
+    "content_scripts": [{
+        "matches": [
+            "*://69.10.47.54/*",
+            "*://proxy2.alliancedialer.com/*"
+        ],
+        "js": ["content.js"],
+        "run_at": "document_end"
+    }],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}
+
+
+
+{
+    "manifest_version": 3,
+    "name": "CRM Disposition Panel",
+    "version": "1.0",
+    "description": "Enhanced CRM disposition helper panel",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "scripting"
+    ],
+    "host_permissions": [
+        "*://69.10.47.54/*",
+        "*://proxy2.alliancedialer.com/*"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Open CRM Disposition Panel"
+    },
+    "content_scripts": [{
+        "matches": [
+            "*://69.10.47.54/*",
+            "*://proxy2.alliancedialer.com/*"
+        ],
+        "js": ["content.js"],
+        "run_at": "document_end"
+    }],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            width: 350px;
+            height: 600px;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', Arial, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            color: white;
+            padding: 12px 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .search-container {
+            padding: 10px 15px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 12px;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .button-container {
+            padding: 10px 15px;
+            overflow-y: auto;
+            height: calc(100vh - 180px);
+        }
+
+        .dispo-group {
+            margin-bottom: 15px;
+        }
+
+        .group-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin: 8px 0 5px 0;
+            padding-left: 8px;
+            border-left: 3px solid #2e7d32;
+            font-size: 12px;
+        }
+
+        .dispo-button {
+            width: 100%;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 3px 0;
+            cursor: pointer;
+            text-align: left;
+            font-size: 11px;
+            transition: all 0.2s ease;
+        }
+
+        .dispo-button:hover {
+            background: #e8f5e9;
+            border-color: #4CAF50;
+            transform: translateY(-1px);
+        }
+
+        .action-buttons {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            padding: 10px 15px;
+            border-top: 1px solid #e0e0e0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+
+        .action-button {
+            background: #388e3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 5px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .action-button:hover {
+            background: #2e7d32;
+        }
+
+        .action-button.save {
+            background: #1976d2;
+        }
+
+        .action-button.save:hover {
+            background: #1565c0;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        CRM Disposition Panel
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="🔍 Search dispositions..." id="searchInput">
+    </div>
+
+    <div class="button-container" id="buttonContainer">
+        <!-- Disposition buttons will be loaded here -->
+    </div>
+
+    <div class="action-buttons">
+        <button class="action-button" id="saveBtn">💾 Save</button>
+        <button class="action-button" id="finishBtn">📞 Finish</button>
+        <button class="action-button" id="machineBtn">🤖 Ans Mach</button>
+        <button class="action-button" id="faxBtn">📠 Fax</button>
+        <button class="action-button" id="duplicateBtn">⎘ Duplicate</button>
+        <button class="action-button save" id="quickSaveBtn">⚡ Quick Save</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
